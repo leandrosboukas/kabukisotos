@@ -8,6 +8,10 @@ grSet$group
 grSet$tissue
 ##keep only the samples from control and Sotos individuals, and only from whole blood
 grSet<-grSet[,-c(99:122,54:57,77:79),drop=FALSE]
+
+grSet <- grSet[, grSet$group %in% c("control", "Sotos")]
+
+
 ##verify we now only have control whole blood and Sotos whole blood
 grSet$group
 grSet$tissue
