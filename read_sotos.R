@@ -1,11 +1,11 @@
-require(minfi)
+library(minfi)
 library(GEOquery)
-idatFiles <- list.files("GSE74432/idat", pattern = "idat.gz$", full = TRUE)
-rgSet <- read.450k.exp("GSE74432/idat",verbose=TRUE)
+idatFiles <- list.files("/dcl01/hansen/data/meth_sotos/GSE74432/idat", pattern = "idat.gz$", full = TRUE)
+rgSet <- read.450k.exp("/dcl01/hansen/data/meth_sotos/GSE74432/idat", verbose=TRUE)
 rgSet
 pData(rgSet)
 head(sampleNames(rgSet))
-geoMat <- getGEO('GSE74432',GSEMatrix=TRUE)
+geoMat <- getGEO('GSE74432', GSEMatrix=TRUE)
 pD.all <- pData(geoMat[[1]])
 pD <- pD.all[, c("title", "geo_accession", "characteristics_ch1.1", "characteristics_ch1.2")]
 head(pD)
@@ -20,11 +20,8 @@ head(sampleNames(rgSet))
 pD$title <- sampleNames(rgSet)
 rownames(pD) <- pD$title
 pD <- pD[sampleNames(rgSet),]
-
-## CHECK THAT pD is ordered the same way as rgSet
 pData(rgSet) <- pD  
 rgSet
-
 
 rgSet.sotos <- rgSet
 save(rgSet.sotos, file="/dcl01/hansen/data/meth_sotos/objects/rgSet.sotos.rda")
