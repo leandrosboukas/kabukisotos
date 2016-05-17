@@ -1,24 +1,9 @@
-require(minfi)
-require(minfiData)
-library(GEOquery)
-load(file="/dcl01/hansen/data/Sotos_rgset")
-rgSet
-grSet <- preprocessQuantile(rgSet)
-grSet$group
-grSet$tissue
-##keep only the samples from control and Sotos individuals, and only from whole blood
-grSet<-grSet[,-c(99:122,54:57,77:79),drop=FALSE]
-
-grSet <- grSet[, grSet$group %in% c("control", "Sotos")]
-
-
-##verify we now only have control whole blood and Sotos whole blood
-grSet$group
-grSet$tissue
-gr<-granges(grSet)
-an<-getAnnotation(grSet)
-beta <- getBeta(grSet)
-disgroup  <- pData(grSet)$group
+load(file="/dcl01/hansen/data/meth_sotos/objects/rgSet.sotos.rda")
+load(file="/dcl01/hansen/data/meth_sotos/objects/grSet.sotos.rda")
+gr<-granges(grSet.sotos)
+an<-getAnnotation(grSet.sotos)
+beta <- getBeta(grSet.sotos)
+disgroup  <- pData(grSet.sotos)$group
 dmp <- dmpFinder(beta, pheno = disgroup, type = "categorical", qCutoff=0.05)
 head(dmp)
 tail(dmp)
