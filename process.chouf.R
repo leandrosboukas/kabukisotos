@@ -4,7 +4,7 @@ require(minfiData)
 ##now I'm gonna drop the Sotos samples from Hong Kong because they weren't used in the DMP analysis, they were only used later for validation of the methylation signature
 hklist<-which(substr(pData(rgSet.chouf)$title,1,2)=="HK") 
 hklist<-hklist[-(20:29)]
-rgSetinit<-rgSet[,-hklist,drop=FALSE]
+rgSetinit<-rgSet.chouf[,-hklist,drop=FALSE]
 ##now keep only control whole blood and sotos whole blood samples
 rgSetinit<-rgSetinit[,which(pData(rgSetinit)$group%in%c("Control","Sotos")),drop=FALSE]
 rgSetinit<-rgSetinit[,which(pData(rgSetinit)$tissue%in%c("whole blood")),drop=FALSE]
