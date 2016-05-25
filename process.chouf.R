@@ -1,4 +1,6 @@
 load(file="/dcl01/hansen/data/meth_sotos/objects/rgSet.chouf.rda")
+require(minfi)
+require(minfiData)
 ##now I'm gonna drop the Sotos samples from Hong Kong because they weren't used in the DMP analysis, they were only used later for validation of the methylation signature
 hklist<-which(substr(pData(rgSet.chouf)$title,1,2)=="HK") 
 hklist<-hklist[-(20:29)]
