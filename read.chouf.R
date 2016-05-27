@@ -19,4 +19,14 @@ pD<-cbind(pD,sampleNames(rgSet))
 pData(rgSet)<-pD
 colnames(pData(rgSet))[34]<-"sampleNames"
 rgSet.chouf<-rgSet
+
+## New
+pData(rgSet.chouf)$Array <- sub(".*_", "", pData(rgSet.chouf)$sampleNames)
+pData(rgSet.chouf)$Slide <- sub("_.*", "", pData(rgSet.chouf)$sampleNames)
+## Remove all the stupid columns we will never use
+## Rename sampleNames
+## Clean up gender
+
+
+
 save(rgSet.chouf, file="/dcl01/hansen/data/meth_sotos/objects/rgSet.chouf.rda")
