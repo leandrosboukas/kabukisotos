@@ -22,14 +22,9 @@ rset2<-ratioConvert(M2, what = "both", keepCN = TRUE)
 grs2<-mapToGenome(rset2)
 rset3<-ratioConvert(M3, what = "both", keepCN = TRUE)
 grs3<-mapToGenome(rset3)
-beta1<-getBeta(grs1)
-beta2<-getBeta(grs2)
-beta3<-getBeta(grs3)
-group1<-pData(grs1)$group
-group2<-pData(grs2)$group
-group3<-pData(grs3)$group
-##now do the 3 different comparisons to get the unified list
-dmp1<-dmpFinder(beta1,group1,type="categorical",qCutoff=0.05)
-dmp2<-dmpFinder(beta2,group2,type="categorical",qCutoff=0.05)
-dmp3<-dmpFinder(beta3,group3,type="categorical",qCutoff=0.05)
-dmplistsot<-Reduce(intersect,list(rownames(dmp1),rownames(dmp2),rownames(dmp3)))
+grSet1.chouf<-grs1
+grSet2.chouf<-grs2
+grSet3.chouf<-grs3
+save(grs1,file="/dcl01/hansen/data/meth_sotos/objects/grSet1.chouf.rda")
+save(grs2,file="/dcl01/hansen/data/meth_sotos/objects/grSet2.chouf.rda")
+save(grs3,file="/dcl01/hansen/data/meth_sotos/objects/grSet3.chouf.rda")
